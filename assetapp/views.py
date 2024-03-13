@@ -68,19 +68,19 @@ class AssetsList(APIView):
 
 
 # Assets_Details With generic Api views
-class Assets_Details(RetrieveUpdateDestroyAPIView):
-    queryset = Assets.objects.all()
-    serializer_class = AssetsSerializer
+# class Assets_Details(RetrieveUpdateDestroyAPIView):
+#     queryset = Assets.objects.all()
+#     serializer_class = AssetsSerializer
 
 
 # Assets_Details With APIView
-'''
+
 
 # The `Assets_Details` class in Python defines methods for retrieving, updating, and deleting asset
 # details using Django REST framework.
 
 class Assets_Details(APIView):
-    def get_student(self, pk):
+    def get_asset(self, pk):
         try:
             return Assets.objects.get(pk=pk)
 
@@ -88,12 +88,12 @@ class Assets_Details(APIView):
             raise Http404
 
     def get(self, request, pk):
-        single_asset = self.get_student(pk)
+        single_asset = self.get_asset(pk)
         serializer = AssetsSerializer(single_asset)
         return Response({'data': serializer.data})
 
     def put(self, request, pk):
-        single_asset = self.get_student(pk)
+        single_asset = self.get_asset(pk)
         serializer = AssetsSerializer(single_asset, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -102,10 +102,10 @@ class Assets_Details(APIView):
             return Response({'data': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        single_asset = self.get_student(pk)
+        single_asset = self.get_asset(pk)
         single_asset.delete()
-        return Response({'data': "student delete successfull"})
-'''
+        return Response({'data': "Asset delete successfull"})
+
 
 class AssetsLogListCreateView(APIView):
 
