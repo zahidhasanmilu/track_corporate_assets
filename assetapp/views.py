@@ -106,3 +106,30 @@ class Assets_Details(APIView):
         single_asset.delete()
         return Response({'data': "student delete successfull"})
 '''
+
+class AssetsLogListCreateView(APIView):
+
+    def get(self, request):
+        assets = AssetLog.objects.all()
+        serializer = AssetLogSerializer(assets, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        asset_id = request.data.get('asset')
+        assets = AssetLog.objects.get(pk=asset_id)
+        if assets.issued:
+            return Response({"detail": "Assets is already issued"}, status=status.HTTP_400_BAD_REQUEST)
+
+        assets.issued = True
+        assets.save()
+
+        serializer = AssetLogSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AssetsLogDetail(RetrieveUpdateDestroyAPIView):
+    queryset = AssetLog.objects.all()
+    serializer_class = AssetLogSerializer
