@@ -31,3 +31,10 @@ class CompanyListCreateView(APIView):
 class EmployeeListCreateView(ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+
+# The class `EmployeeDetails` is a Django REST framework view that allows retrieving, updating, and
+# deleting instances of the `Employee` model using the `EmployeeSerializer`.
+class EmployeeDetails(RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
