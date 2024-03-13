@@ -8,7 +8,7 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = ['name']
 
 
 # The `EmployeeSerializer` class is a Django REST framework serializer for the `Employee` model with
@@ -17,7 +17,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = '__all__'
+        fields = ['company','name', 'department']
 
 
 # The `AssetsSerializer` class is a Django REST framework serializer for the `Assets` model with all

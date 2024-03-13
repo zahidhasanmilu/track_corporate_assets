@@ -63,8 +63,8 @@ class AssetLog(models.Model):
         Assets, related_name='asset', on_delete=models.CASCADE, null=True, blank=True)
     employee = models.ForeignKey(
         Employee, related_name='employee', on_delete=models.CASCADE, null=True, blank=True)
-    checkout_date = models.DateTimeField()
-    return_date = models.DateTimeField(null=True, blank=True)
+    checkout_date = models.DateTimeField(auto_now =timezone.now)
+    return_date = models.DateTimeField(auto_now =timezone.now)
     checkout_condition = models.CharField(
         max_length=50, choices=CONDITION_CHOICE, default='Fair')
     return_condition = models.TextField(null=True, blank=True)
