@@ -38,8 +38,16 @@ class EmployeeListCreateView(ListCreateAPIView):
 class EmployeeDetails(RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    
-    
+
+
+# AssetsList With generic Api views
+class AssetsList(ListCreateAPIView):
+    queryset = Assets.objects.all()
+    serializer_class = AssetsSerializer
+
+
+# AssetsList With APIView
+'''
 # The `AssetsList` class in Python defines GET and POST methods for retrieving and creating assets
 # data using a serializer.
 
@@ -56,7 +64,17 @@ class AssetsList(APIView):
             return Response({'data': serializer.data})
         else:
             return Response({'data': serializer.errors})
+'''
 
+
+# Assets_Details With generic Api views
+class Assets_Details(RetrieveUpdateDestroyAPIView):
+    queryset = Assets.objects.all()
+    serializer_class = AssetsSerializer
+
+
+# Assets_Details With APIView
+'''
 
 # The `Assets_Details` class in Python defines methods for retrieving, updating, and deleting asset
 # details using Django REST framework.
@@ -87,3 +105,4 @@ class Assets_Details(APIView):
         single_asset = self.get_student(pk)
         single_asset.delete()
         return Response({'data': "student delete successfull"})
+'''
