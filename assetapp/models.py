@@ -26,8 +26,7 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.name
-    
-    
+
 
 # The class `Assets` defines a model with fields for asset name, brand, company, condition,
 # manufacturer, serial number, issued status, and purchase date.
@@ -58,9 +57,14 @@ class Assets(models.Model):
 # The `AssetsLog` class defines a model with fields for tracking asset checkout and return information
 # for employees.
 class AssetLog(models.Model):
-   asset = models.ForeignKey(Assets, related_name= 'asset', on_delete=models.CASCADE, null=True, blank=True)
-   employee = models.ForeignKey(Employee, related_name= 'employee', on_delete=models.CASCADE, null=True, blank=True)
-   checkout_date = models.DateTimeField()
-   return_date = models.DateTimeField(null=True, blank=True)
-   checkout_condition = models.TextField()
-   return_condition = models.TextField(null=True, blank=True)
+    CONDITION_CHOICE = (('Excellent', 'Excellent'),
+                        ('Fair', 'Fair'), ('Damaged', 'Damaged'))
+    asset = models.ForeignKey(
+        Assets, related_name='asset', on_delete=models.CASCADE, null=True, blank=True)
+    employee = models.ForeignKey(
+        Employee, related_name='employee', on_delete=models.CASCADE, null=True, blank=True)
+    checkout_date = models.DateTimeField()
+    return_date = models.DateTimeField(null=True, blank=True)
+    checkout_condition = models.CharField(
+        max_length=50, choices=CONDITION_CHOICE, default='Fair')
+    return_condition = models.TextField(null=True, blank=True)
