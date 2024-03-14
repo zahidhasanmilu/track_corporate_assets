@@ -32,7 +32,7 @@ CUSTOM_APPS = [
     'rest_framework',
     'assetapp',
 ]
-INSTALLED_APPS +=CUSTOM_APPS
+INSTALLED_APPS += CUSTOM_APPS
 
 
 MIDDLEWARE = [
@@ -75,6 +75,25 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+######################### For MySql Database  ###########################
+''' The commented out section `# DATABASES = { ... }` is an alternative configuration for setting up a
+MySQL database in a Django project. By uncommenting this section and commenting out the existing
+SQLite configuration, you can switch your Django project to use a MySQL database instead of the
+default SQLite database.
+'''
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'assetstrackdb',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': 3306
+#     }
+# }
 
 
 # Password validation
